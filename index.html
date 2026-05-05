@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lívia Rodrigues Câmara | Portfólio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            /* Paleta Rosa Aesthetic */
+            --color-primary: #E5A4B4;
+            --color-primary-light: #FFE5EC;
+            --color-primary-dark: #D4899A;
+            --color-accent: #FFB3C6;
+            
+            /* Neutros */
+            --color-bg: #FAF8F5;
+            --color-surface: #FFFFFF;
+            --color-text: #3A3A3A;
+            --color-text-light: #6B6B6B;
+            
+            /* Tipografia */
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+            
+            /* Espaçamentos */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Transições */
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Background Pattern Sutil */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(229, 164, 180, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 179, 198, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* ========== TIPOGRAFIA ========== */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--color-primary-dark);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--color-text);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--color-text-light);
+            max-width: 65ch;
+        }
+        
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(229, 164, 180, 0.1);
+        }
+        
+        nav.scrolled {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            box-shadow: 0 4px 20px rgba(229, 164, 180, 0.1);
+        }
+        
+        nav .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-primary-dark);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        
+        nav .logo:hover {
+            color: var(--color-primary);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: var(--transition-smooth);
+        }
+        
+        nav a:hover {
+            color: var(--color-primary-dark);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* ========== SECTIONS BASE ========== */
+        section {
+            min-height: 100vh;
+            padding: var(--spacing-xl) var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Animação fade-in elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ========== HERO SECTION ========== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: calc(var(--spacing-xl) + 80px);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: var(--transition-smooth);
+        }
+        
+        .hero-title.shrink {
+            transform: scale(0.85);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(229, 164, 180, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(229, 164, 180, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-dark);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+        }
+        
+        /* ========== ABOUT SECTION ========== */
+        #about {
+            background: linear-gradient(to bottom, var(--color-bg), rgba(255, 229, 236, 0.3));
+        }
+        
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+        
+        /* ========== PROJECTS SECTION ========== */
+        #projects {
+            background: var(--color-bg);
+        }
+        
+        .projects-grid {
+            display: grid;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .project-card {
+            background: var(--color-surface);
+            border-radius: 20px;
+            padding: var(--spacing-lg);
+            box-shadow: 0 10px 40px rgba(229, 164, 180, 0.15);
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(229, 164, 180, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(229, 164, 180, 0.25);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+        
+        .project-title {
+            flex: 1;
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 0.4rem 1rem;
+            background: var(--color-primary-light);
+            color: var(--color-primary-dark);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .project-details {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .project-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .project-details li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-light);
+        }
+        
+        .project-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+        
+        .project-link:hover {
+            color: var(--color-primary);
+            gap: 0.8rem;
+        }
+        
+        /* ========== CONTACT SECTION ========== */
+        #contact {
+            background: linear-gradient(to bottom, var(--color-bg), var(--color-primary-light));
+            text-align: center;
+        }
+        
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+            align-items: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+        }
+        
+        .contact-item a {
+            color: var(--color-primary-dark);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        
+        .contact-item a:hover {
+            color: var(--color-primary);
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--color-primary-dark);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-lg: 2rem;
+                --spacing-xl: 3rem;
+            }
+            
+            nav {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+            
+            nav ul {
+                gap: var(--spacing-sm);
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+            }
+            
+            section {
+                padding: var(--spacing-lg) var(--spacing-md);
+                min-height: auto;
+            }
+            
+            #hero {
+                padding-top: calc(var(--spacing-lg) + 60px);
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .project-header {
+                flex-direction: column;
+            }
+        }
+        
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-load {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* Staggered delays for hero elements */
+        .hero-title {
+            animation-delay: 0.1s;
+        }
+        
+        .hero-subtitle {
+            animation-delay: 0.3s;
+        }
+        
+        .hero-buttons {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav id="nav">
+        <div class="nav-content">
+            <a href="#hero" class="logo">LRC</a>
+            <ul>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<!-- HERO SECTION -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-content">
+
+            <h1 class="hero-title animate-on-load">Lívia Rodrigues Câmara</h1>
+
+            <p class="hero-subtitle animate-on-load">
+                Estudante de Sistemas de Informação • Desenvolvedora em formação • Inglês nível C2
+            </p>
+
+            <div class="hero-buttons animate-on-load">
+
+                <!-- CANVAS -->
+               <a href="assets/Business Canvas LRC(1).png" target="_blank" class="btn btn-secondary">
+    📊 Canvas
+</a>
+                <!-- LINKEDIN -->
+                <a href="https://www.linkedin.com/in/lívia-sistemas" target="_blank" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+
+                <!-- GITHUB -->
+                <a href="https://github.com/livia-camaratech" target="_blank" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    GitHub
+                </a>
+
+                <!-- CONTATO -->
+                <a href="mailto:livia.camaratech@gmail.com" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Entrar em contato
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content fade-in">
+                <h2>Sobre mim</h2>
+                <p>
+                    Sou estudante de Sistemas de Informação, com foco em desenvolvimento de software, organização de dados e análise de sistemas.
+Tenho experiência em ambientes institucionais, atuando com controle de dados, organização de processos administrativos e suporte operacional.
+Busco evolução constante na área de tecnologia, integrando pensamento analítico, comunicação e resolução de problemas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="fade-in" style="text-align: center;">Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <div class="project-title">
+                            <h3>Sistema de Controle de Horas de Alunos</h3>
+                        </div>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                    </div>
+                    
+                    <p class="project-description">
+                        Sistema web desenvolvido para resolver um problema real de controle de horas de trabalho, permitindo consulta individualizada por aluno com foco em privacidade, organização de dados e experiência do usuário. A aplicação exibe informações 
+                        como carga horária pendente, dias de ausência e dados acadêmicos, com feedback 
+                        visual em cores (verde e vermelho) para facilitar a interpretação.
+                    </p>
+                    
+                    <div class="project-details">
+                        <strong>Destaques:</strong>
+                        <ul>
+                            <li>Interface pensada para fácil visualização</li>
+                            <li>Projeto criado para atender uma demanda real do ambiente de trabalho</li>
+                            <li>Foco em organização de informações e experiência do usuário</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://github.com/livia-camaratech/ListaDeHoras-html" target="_blank" class="project-link">
+                        Ver no GitHub
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14m-7-7l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Pesquisa SECTION -->
+   <section id="pesquisa">
+    <div class="container fade-in">
+
+        <h2 style="text-align: center;">Pesquisa Acadêmica</h2>
+
+        <div style="
+            padding: 2rem;
+            border-left: 4px solid #E5A4B4;
+            background: rgba(229, 164, 180, 0.08);
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        ">
+            <h3>Programa de Bolsa de Iniciação Científica (ProBIC)</h3>
+
+            <p>Projeto de pesquisa aprovado com duração de um ano.</p>
+
+            <p>
+                <strong>Título:</strong> Desenvolvimento de um protótipo de aplicativo móvel para promoção de hábitos saudáveis em idosos em uma comunidade no interior de São Paulo.
+            </p>
+
+            <p>
+                O projeto integra tecnologia, saúde e impacto social com foco em qualidade de vida da população idosa.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+    <!-- DIFERENCIAIS SECTION -->
+<section id="diferenciais">
+    <div class="container fade-in">
+
+        <h2 style="text-align: center;">Diferenciais</h2>
+
+        <div class="project-card" style="margin-top: 2rem;">
+
+            <h3>Competências Técnicas e Acadêmicas</h3>
+
+            <ul style="text-align: left; line-height: 1.8;">
+                <li><strong>Inglês:</strong> nível C2 (fluente)</li>
+                <li><strong>Excel:</strong> organização e análise de dados</li>
+                <li><strong>Organização de dados:</strong> experiência com planilhas e controle administrativo</li>
+                <li><strong>Experiência administrativa:</strong> suporte operacional em ambiente institucional</li>
+                <li><strong>Python:</strong> lógica de programação e desenvolvimento básico de sistemas</li>
+                <li><strong>Análise de dados:</strong> aplicação em contextos acadêmicos e administrativos</li>
+            </ul>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content fade-in">
+                <h2>Vamos conversar?</h2>
+                <p>Estou aberta a oportunidades, projetos e conexões na área de tecnologia.</p>
+                
+                <div class="contact-links">
+                    <div class="contact-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <a href="mailto:livia.camaratech@gmail.com">livia.camaratech@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <a href="https://www.linkedin.com/in/lívia-sistemas" target="_blank">linkedin.com/in/lívia-sistemas</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        <a href="https://github.com/livia-camaratech" target="_blank">github.com/livia-camaratech</a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <a href="mailto:livia.camaratech@gmail.com" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.1rem 2.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Entrar em contato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Lívia Rodrigues Câmara. Feito com dedicação e código.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ========== SHRINKING HEADER ON SCROLL ==========
+        const heroTitle = document.querySelector('.hero-title');
+        const nav = document.getElementById('nav');
+        
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            
+            // Shrink title
+            if (scrollPosition > 100) {
+                heroTitle.classList.add('shrink');
+            } else {
+                heroTitle.classList.remove('shrink');
+            }
+            
+            // Nav background
+            if (scrollPosition > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // ========== FADE IN ON SCROLL ==========
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // ========== SMOOTH SCROLL FOR NAVIGATION ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Adjust for fixed nav
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // ========== STAGGERED ANIMATION FOR PROJECT CARDS ==========
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
